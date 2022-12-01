@@ -2,8 +2,8 @@ var monthShown = false;
 const currentMonth = new Date().getMonth();
 const currentYear = new Date().getFullYear();
 const currentDate = new Date().getDate();
-var selectedDate = null;
-
+var selectedDateEl = null;
+var selectedDate = `${currentDate}-${currentMonth + 1}-${currentYear}`;
 const getcalendar = (
   month = currentMonth,
   year = currentYear,
@@ -61,7 +61,8 @@ const createcalendar = (noOfDays, day, month, year, calendarId) => {
       let dateValue = `${weekDay}-${month + 1}-${year}`;
       if (dateValue === `${currentDate}-${currentMonth + 1}-${currentYear}`) {
         date.classList.add("selectedDate");
-        selectedDate = date;
+        selectedDateEl = date;
+        selectedDate = dateValue;
       }
       date.addEventListener("click", () => {
         setDate(dateValue, date);
@@ -96,14 +97,13 @@ const goAheadOrBackward = (direction) => {
 };
 const setDate = (dateValue = "", date) => {
   if (dateValue === "") {
-    document.getElementById("date").innerHTML = `${currentDate}-${
-      currentMonth + 1
-    }-${currentYear}`;
+    document.getElementById("date").innerHTML = selectedDate;
   } else {
     document.getElementById("date").innerHTML = dateValue;
   }
-  dateValue !== "" && selectedDate.classList.remove("selectedDate");
+  dateValue !== "" && selectedDateEl.classList.remove("selectedDate");
   dateValue !== "" && date.classList.add("selectedDate");
-  selectedDate = date;
+  selectedDateEl = date;
+  selectedDate = dateValue;
 };
 setDate();

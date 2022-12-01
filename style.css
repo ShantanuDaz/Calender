@@ -2,13 +2,14 @@ body {
   margin: 0;
   height: 100vh;
   display: grid;
-  background-color: cornflowerblue;
+  background-color: #001233;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .calendarContainer {
   height: fit-content;
   width: max-content;
   margin: auto;
+  color: white;
 }
 .calendarDate {
   height: 10%;
@@ -17,25 +18,27 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  border: 4px solid rgb(30, 41, 53);
+  border: 4px solid white;
   border-radius: 12px;
   padding: 10px;
 }
 .calendarDate > div {
   font-size: 2em;
+  text-shadow: 0 0 10px white;
 }
 .calendarDate > img {
   cursor: pointer;
   height: 2em;
   aspect-ratio: 1/1;
   transition: all 0.5s;
+  filter: drop-shadow(0 0 0.5rem white);
 }
 .calendarDate > img:hover {
   filter: drop-shadow(0 0 0.2rem white);
 }
 .calendar {
   font-size: 1.5em;
-  border: 4px solid #1e2935;
+  border: 4px solid white;
   border-radius: 12px;
   padding: 10px;
   margin-top: 10px;
@@ -44,21 +47,29 @@ body {
 #month {
   font-size: 1.6rem;
   text-align: center;
+  text-shadow: 0 0 15px white;
 }
 .calendar th {
   padding: 5px;
+  text-shadow: 0 0 15px white;
 }
 .calendar td {
   cursor: pointer;
   padding: 5px;
   text-align: center;
+  border-radius: 5px;
+  text-shadow: 0 0 15px white;
   transition: all 0.5s;
 }
 .calendar td:hover {
   background-color: hsla(211, 28%, 16%, 0.495);
+  box-shadow: 0 0 15px 0px white;
+  color: black;
 }
 .selectedDate {
   background-color: hsla(211, 28%, 16%, 0.495);
+  color: black;
+  font-weight: 600;
 }
 .hide {
   display: none;
