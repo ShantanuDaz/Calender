@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blogging</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <button onclick="getCalender()">Calender</button>
-    <table id="calender" class="calender hide">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calendar</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="calendarContainer">
+    <div class="calendarDate">
+      <div id="date"></div>
+      <img src="./Assets/calendar.svg" alt="calendar" onclick="getcalendar()">
+    </div>
+    <table id="calendar" class="calendar hide">
       <thead>
         <tr>
-          <th id="month" colspan="5"></th>
-          <th onclick="goAheadOrBackward('Backward')">&lt;</th>
-          <th onclick="goAheadOrBackward('forward')">&gt;</th>
+          <th id="month" colspan="5" onclick=""></th>
+          <th onclick="goAheadOrBackward('Backward')" class="arrow">&lt;</th>
+          <th onclick="goAheadOrBackward('forward')" class="arrow">&gt;</th>
         </tr>
         <th>Sun</th>
         <th>Mon</th>
@@ -27,5 +33,7 @@
       </thead>
       <tbody></tbody>
     </table>
-  </body>
+  </div>
+</body>
+
 </html>

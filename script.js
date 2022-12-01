@@ -1,23 +1,25 @@
 var monthShown = false;
 const currentMonth = new Date().getMonth();
 const currentYear = new Date().getFullYear();
+const currentDate = new Date().getDate();
+var selectedDate = null;
 
-const getCalender = (
+const getcalendar = (
   month = currentMonth,
   year = currentYear,
   change = false
 ) => {
-  const calender = document.getElementById("calender");
-  if (calender.classList[1] === "hide" || change) {
+  const calendar = document.getElementById("calendar");
+  if (calendar.classList[1] === "hide" || change) {
     if (monthShown === false || change) {
       const noOfDays = new Date(year, month + 1, 0).getDate();
       const day = new Date(year, month, 1).getDay();
-      createCalender(noOfDays, day, month, year, calender);
+      createcalendar(noOfDays, day, month, year, calendar);
       monthShown = true;
     }
-    if (!change) calender.classList.toggle("hide");
+    if (!change) calendar.classList.toggle("hide");
   } else {
-    calender.classList.toggle("hide");
+    calendar.classList.toggle("hide");
   }
 };
 
@@ -36,12 +38,13 @@ const months = [
   "Dec",
 ];
 
-const createCalender = (noOfDays, day, month, year, calenderId) => {
+const createcalendar = (noOfDays, day, month, year, calendarId) => {
   let weekDays = 1;
   let weekDay = 1;
-  const calender = calenderId;
+  const calendar = calendarId;
+  calendar.children[1].innerHTML = "";
   document.getElementById("month").innerHTML = `${months[month]} ${year}`;
-  let days = calender.children[1];
+  let days = calendar.children[1];
   while (weekDay <= noOfDays || day > 0) {
     if (weekDays === 1) {
       let row = document.createElement("tr");
@@ -55,6 +58,14 @@ const createCalender = (noOfDays, day, month, year, calenderId) => {
     } else {
       let date = document.createElement("td");
       date.innerHTML = weekDay;
+      let dateValue = `${weekDay}-${month + 1}-${year}`;
+      if (dateValue === `${currentDate}-${currentMonth + 1}-${currentYear}`) {
+        date.classList.add("selectedDate");
+        selectedDate = date;
+      }
+      date.addEventListener("click", () => {
+        setDate(dateValue, date);
+      });
       days.lastChild.appendChild(date);
       weekDay++;
     }
@@ -81,7 +92,18 @@ const goAheadOrBackward = (direction) => {
       FBYear--;
     } else FBMonth--;
   }
-  const calender = document.getElementById("calender");
-  calender.children[1].innerHTML = "";
-  getCalender(FBMonth, FBYear, true);
+  getcalendar(FBMonth, FBYear, true);
 };
+const setDate = (dateValue = "", date) => {
+  if (dateValue === "") {
+    document.getElementById("date").innerHTML = `${currentDate}-${
+      currentMonth + 1
+    }-${currentYear}`;
+  } else {
+    document.getElementById("date").innerHTML = dateValue;
+  }
+  dateValue !== "" && selectedDate.classList.remove("selectedDate");
+  dateValue !== "" && date.classList.add("selectedDate");
+  selectedDate = date;
+};
+setDate();

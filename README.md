@@ -1,2 +1,3 @@
-# Calender
-Dynamic Calendar using HTML ,CSS and JavaScript 
+# calendar
+
+Dynamic Calendar using HTML ,CSS and JavaScript
